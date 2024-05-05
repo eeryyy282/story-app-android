@@ -12,4 +12,5 @@
     <string name="author">Muhammad Juzairi Safitli</string>
     <string name="have_account">Sudah memiliki akun?</string>
     <string name="have_account_button_text">Masuk dengan akunmu</string>
+    <string name="username">Username</string>
 </resources>
