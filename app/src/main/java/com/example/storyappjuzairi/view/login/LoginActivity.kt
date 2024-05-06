@@ -2,6 +2,8 @@ package com.example.storyappjuzairi.view.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,5 +32,45 @@ class LoginActivity : AppCompatActivity() {
             intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        setMyButtonEnable()
+
+        binding.edLoginEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+        })
+
+        binding.edLoginPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                setMyButtonEnable()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
+    }
+
+    private fun setMyButtonEnable() {
+        val loginEmailText = binding.edLoginEmail.text
+        val loginPasswordText = binding.edLoginPassword.text
+        binding.btnMasuk.isEnabled = (loginEmailText.toString()
+            .isNotEmpty() && loginEmailText != null && loginPasswordText.toString().isNotEmpty()
+                && loginPasswordText != null)
     }
 }
