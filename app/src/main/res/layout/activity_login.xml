@@ -28,25 +28,6 @@
             android:layout_height="match_parent"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/login_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/login_title"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
             <com.example.storyappjuzairi.view.custom.EditTextEmail
                 android:id="@+id/ed_login_email"
                 android:layout_width="match_parent"
@@ -61,7 +42,7 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/login_title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <com.example.storyappjuzairi.view.custom.EditTextPassword
@@ -152,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
-        android:text="@string/app_titile"
+        android:text="@string/app_titlle"
         android:textColor="@color/cream"
         android:textSize="34sp"
         android:textStyle="bold"

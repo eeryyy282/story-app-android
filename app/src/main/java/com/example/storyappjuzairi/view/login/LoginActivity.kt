@@ -1,9 +1,11 @@
 package com.example.storyappjuzairi.view.login
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,13 +30,26 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnDaftar.setOnClickListener {
-            intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
         setMyButtonEnable()
 
+        setUpAction()
+
+        checkChanged()
+
+        playAnimation()
+
+
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+    }
+
+    private fun checkChanged() {
         binding.edLoginEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -63,7 +78,15 @@ class LoginActivity : AppCompatActivity() {
             }
 
         })
+    }
 
+    private fun setUpAction() {
+        binding.btnDaftar.setOnClickListener {
+            intent = Intent(this, RegisterActivity::class.java)
+            startActivity(
+                intent
+            )
+        }
     }
 
     private fun setMyButtonEnable() {

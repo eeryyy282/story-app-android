@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">StoryAppJuzairi</string>
-    <string name="login">Masuk</string>
+    <string name="login">Login</string>
     <string name="not_have_account">Belum memiliki akun?</string>
-    <string name="register">Daftar</string>
-    <string name="app_titile">Story App</string>
-    <string name="app_title_description">Bagikan pengalaman menarikmu bersama kami!</string>
+    <string name="register">Register</string>
+    <string name="app_titlle">Story App</string>
+    <string name="app_title_description">Masuk ke akunmu dan mulailah bagikan pengalaman menarikmu bersama kami!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="app_icon">App Icon</string>
@@ -14,4 +14,7 @@
     <string name="have_account_button_text">Masuk dengan akunmu</string>
     <string name="username">Username</string>
     <string name="login_title">Login</string>
+    <string name="app_title_description_register">Daftarkan dirimu dan mulailah berbagi cerita bersama kami!</string>
+    <string name="welcome_description">Baca dan berbagi pengalaman menarik dari Story App. Masuk atau daftar untuk mulai menjelajah cerita unik dari ribuan orang!</string>
+    <string name="welcome_picture">welcome picture</string>
 </resources>

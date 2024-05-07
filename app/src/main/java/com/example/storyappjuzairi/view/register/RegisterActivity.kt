@@ -1,9 +1,11 @@
 package com.example.storyappjuzairi.view.register
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,13 +30,25 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnMasuk.setOnClickListener {
-            intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
         setMyButtonEnable()
 
+        setUpAction()
+
+        checkChanged()
+
+        playAnimation()
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+    }
+
+
+    private fun checkChanged() {
         binding.edRegisterName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -78,7 +92,15 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         })
+    }
 
+    private fun setUpAction() {
+        binding.btnMasuk.setOnClickListener {
+            intent = Intent(this, LoginActivity::class.java)
+            startActivity(
+                intent
+            )
+        }
     }
 
     private fun setMyButtonEnable() {
