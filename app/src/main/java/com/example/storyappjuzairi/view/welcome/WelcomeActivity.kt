@@ -20,6 +20,10 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        if (intent.action == "CLOSE_WELCOME_ACTIVITY") {
+            finish()
+        }
+
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

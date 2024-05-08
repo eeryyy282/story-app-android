@@ -1,6 +1,5 @@
 package com.example.storyappjuzairi.view.register
 
-import RegisterViewModel
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
@@ -74,15 +73,6 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun registerUser() {
-        val userName = binding.edRegisterName.text.toString().trim()
-        val userEmail = binding.edRegisterEmail.text.toString().trim()
-        val userPassword = binding.edRegisterPassword.text.toString().trim()
-
-        registerViewModel.registerUser(userName, userEmail, userPassword)
-
-    }
-
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 6000
@@ -152,6 +142,15 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    private fun registerUser() {
+        val userName = binding.edRegisterName.text.toString().trim()
+        val userEmail = binding.edRegisterEmail.text.toString().trim()
+        val userPassword = binding.edRegisterPassword.text.toString().trim()
+
+        registerViewModel.registerUser(userName, userEmail, userPassword)
+
+    }
+
     private fun showDialog(message: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(message)
@@ -165,6 +164,7 @@ class RegisterActivity : AppCompatActivity() {
         alertDialog.show()
 
         val messageView = alertDialog.findViewById<TextView>(android.R.id.message)
+        @Suppress("DEPRECATION")
         messageView?.setTextColor(resources.getColor(R.color.black))
         alertDialog.window?.setBackgroundDrawableResource(R.color.white)
     }
@@ -178,6 +178,7 @@ class RegisterActivity : AppCompatActivity() {
         val alertDialog = builder.create()
         alertDialog.show()
         val messageView = alertDialog.findViewById<TextView>(android.R.id.message)
+        @Suppress("DEPRECATION")
         messageView?.setTextColor(resources.getColor(R.color.black))
         alertDialog.window?.setBackgroundDrawableResource(R.color.white)
     }
