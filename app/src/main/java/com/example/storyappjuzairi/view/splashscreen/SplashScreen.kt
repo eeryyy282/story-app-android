@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.storyappjuzairi.R
-import com.example.storyappjuzairi.view.login.LoginActivity
 import com.example.storyappjuzairi.view.welcome.WelcomeActivity
 
 class SplashScreen : AppCompatActivity() {

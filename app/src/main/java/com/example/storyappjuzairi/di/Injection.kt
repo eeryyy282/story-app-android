@@ -1,13 +1,13 @@
 package com.example.storyappjuzairi.di
 
-import android.content.Context
-import com.example.storyappjuzairi.data.UserRepository
-import com.example.storyappjuzairi.data.pref.UserPreference
-import com.example.storyappjuzairi.data.pref.dataStore
+
+import com.example.storyappjuzairi.data.repository.RegisterRepository
+import com.example.storyappjuzairi.data.retrofit.ApiConfig
+
 
 object Injection {
-    fun provideRepository(context: Context): UserRepository {
-        val pref = UserPreference.getInstance(context.dataStore)
-        return UserRepository.getInstance(pref)
+    fun registerRepository(): RegisterRepository {
+        val apiService = ApiConfig.getApiService()
+        return RegisterRepository.getInstance(apiService)
     }
 }
