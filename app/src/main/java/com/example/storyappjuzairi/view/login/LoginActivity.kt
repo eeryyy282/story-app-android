@@ -15,6 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyappjuzairi.R
+import com.example.storyappjuzairi.data.pref.UserPreference
+import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.ActivityLoginBinding
 import com.example.storyappjuzairi.view.main.MainActivity
 import com.example.storyappjuzairi.view.register.RegisterActivity
@@ -36,8 +38,13 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
 
+        val userPref = UserPreference.getInstance(application.dataStore)
+
         val factoryResult: LoginViewModelFactory =
-            LoginViewModelFactory.getInstance()
+            LoginViewModelFactory.getInstance(
+                application,
+                userPref
+            )
         loginViewModel = ViewModelProvider(this, factoryResult)[LoginViewModel::class.java]
 
         loginViewModel.showSuccessDialog.observe(this) {
@@ -139,11 +146,11 @@ class LoginActivity : AppCompatActivity() {
             .setMessage(message)
             .setPositiveButton("Konfirmasi") { dialog, _ ->
                 dialog.dismiss()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                }
                 startActivity(intent)
                 finish()
-                val closeWelcomeActivity = Intent("CLOSE_WELCOME_ACTIVITY")
-                sendBroadcast(closeWelcomeActivity)
             }
         val alertDialog = builder.create()
         alertDialog.show()

@@ -36,7 +36,9 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val factoryResult: RegisterViewModelFactory =
-            RegisterViewModelFactory.getInstance()
+            RegisterViewModelFactory.getInstance(
+                application
+            )
         registerViewModel = ViewModelProvider(this, factoryResult)[RegisterViewModel::class.java]
 
         registerViewModel.showSuccessDialog.observe(this) {
@@ -151,6 +153,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
+    @Suppress("DEPRECATION")
     private fun showDialog(message: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(message)
@@ -164,11 +167,11 @@ class RegisterActivity : AppCompatActivity() {
         alertDialog.show()
 
         val messageView = alertDialog.findViewById<TextView>(android.R.id.message)
-        @Suppress("DEPRECATION")
         messageView?.setTextColor(resources.getColor(R.color.black))
         alertDialog.window?.setBackgroundDrawableResource(R.color.white)
     }
 
+    @Suppress("DEPRECATION")
     private fun showErrorDialog(errorMessage: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(errorMessage)
@@ -178,7 +181,6 @@ class RegisterActivity : AppCompatActivity() {
         val alertDialog = builder.create()
         alertDialog.show()
         val messageView = alertDialog.findViewById<TextView>(android.R.id.message)
-        @Suppress("DEPRECATION")
         messageView?.setTextColor(resources.getColor(R.color.black))
         alertDialog.window?.setBackgroundDrawableResource(R.color.white)
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.response.LoginResponse
 import com.google.gson.Gson
@@ -14,7 +15,8 @@ import retrofit2.HttpException
 
 class LoginViewModel(
     application: Application,
-    private val loginRepository: LoginRepository
+    private val loginRepository: LoginRepository,
+    private val userPreference: UserPreference
 ) : AndroidViewModel(application) {
 
     private val _showSuccessDialog = MutableLiveData<String>()
@@ -29,13 +31,6 @@ class LoginViewModel(
     val loading: LiveData<Boolean>
         get() = _loading
 
-    private val _token = MutableLiveData<String?>()
-    val token: MutableLiveData<String?>
-        get() = _token
-
-    private val _username = MutableLiveData<String?>()
-    val username: MutableLiveData<String?>
-        get() = _username
 
     fun loginUser(email: String, password: String) {
         _loading.value = true
@@ -43,12 +38,18 @@ class LoginViewModel(
             try {
                 val response = loginRepository.login(email, password)
                 val loginResult = response.loginResult
-                val token = loginResult?.token
+                val userId = loginResult?.userId
                 val username = loginResult?.name
-                _token.postValue(token)
-                _username.postValue(username)
+                val userToken = loginResult?.token
                 _loading.postValue(false)
                 _showSuccessDialog.postValue("Login berhasil")
+                userToken?.let { token ->
+                    userId?.let { id ->
+                        username?.let { name ->
+                            saveUserData(id, name, token)
+                        }
+                    }
+                }
             } catch (e: HttpException) {
                 _loading.postValue(false)
                 val jsonInString = e.response()?.errorBody()?.string()
@@ -59,6 +60,12 @@ class LoginViewModel(
                 _loading.postValue(false)
                 _showErrorDialog.postValue("Login gagal: ${e.message}")
             }
+        }
+    }
+
+    private fun saveUserData(userId: String, username: String, userToken: String) {
+        viewModelScope.launch {
+            userPreference.saveUserData(token = userToken, id = userId, name = username)
         }
     }
 

@@ -3,16 +3,18 @@ package com.example.storyappjuzairi.view.register
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.storyappjuzairi.data.repository.RegisterRepository
 import com.example.storyappjuzairi.di.Injection
 
 class RegisterViewModelFactory private constructor(
-    private val application: Application
+    private val application: Application,
+    private val registerRepository: RegisterRepository
 ) : ViewModelProvider.AndroidViewModelFactory(application) {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
-            return RegisterViewModel(application, Injection.registerRepository()) as T
+            return RegisterViewModel(application, registerRepository) as T
         }
         throw IllegalArgumentException("Viewmodel class tidak ditemukan")
     }
@@ -21,9 +23,12 @@ class RegisterViewModelFactory private constructor(
         @Volatile
         private var instance: RegisterViewModelFactory? = null
 
-        fun getInstance(): RegisterViewModelFactory =
+        fun getInstance(application: Application): RegisterViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: RegisterViewModelFactory(application = Application())
+                instance ?: RegisterViewModelFactory(
+                    application,
+                    Injection.registerRepository()
+                )
             }.also { instance = it }
     }
 

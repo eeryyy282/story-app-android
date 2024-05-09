@@ -16,13 +16,10 @@ import com.example.storyappjuzairi.view.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        if (intent.action == "CLOSE_WELCOME_ACTIVITY") {
-            finish()
-        }
 
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,6 +33,7 @@ class WelcomeActivity : AppCompatActivity() {
         setUpAction()
 
         playAnimation()
+
     }
 
     private fun playAnimation() {
