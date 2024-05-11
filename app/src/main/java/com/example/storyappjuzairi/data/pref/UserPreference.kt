@@ -16,7 +16,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     private val userId = stringPreferencesKey("user_id")
     private val userName = stringPreferencesKey("user_name")
 
-     suspend fun getUserToken(): String {
+    suspend fun getUserToken(): String {
         val preferences = dataStore.data.first()
         return preferences[userToken] ?: ""
     }
