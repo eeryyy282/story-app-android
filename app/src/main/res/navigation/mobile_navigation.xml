@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.storyappjuzairi.view.main.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_add_story"
+        android:name="com.example.storyappjuzairi.view.main.ui.add_story.AddStoryFragment"
+        android:label="@string/title_story"
+        tools:layout="@layout/fragment_add_story" />
 
     <fragment
-        android:id="@+id/profile"
-        android:name="com.example.storyappjuzairi.view.main.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_profile"
+        android:name="com.example.storyappjuzairi.view.main.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

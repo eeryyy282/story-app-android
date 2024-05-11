@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.ui.dashboard
+package com.example.storyappjuzairi.view.main.ui.add_story
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.storyappjuzairi.databinding.FragmentDashboardBinding
+import com.example.storyappjuzairi.databinding.FragmentAddStoryBinding
 
-class DashboardFragment : Fragment() {
+class AddStoryFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentAddStoryBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,14 +19,14 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        val addStoryViewModel =
+            ViewModelProvider(this).get(AddStoryViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentAddStoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        addStoryViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

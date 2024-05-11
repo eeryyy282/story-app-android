@@ -7,8 +7,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/profile"
+        android:id="@+id/navigation_add_story"
+        android:icon="@drawable/plus_large_svgrepo_com"
+        android:title="@string/title_story" />
+
+    <item
+        android:id="@+id/navigation_profile"
         android:icon="@drawable/user_alt_1_svgrepo_com"
-        android:title="@string/profile" />
+        android:title="@string/title_profile" />
 
 </menu>

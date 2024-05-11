@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">StoryIn</string>
-    <string name="login">Login</string>
+    <string name="login">Masuk</string>
     <string name="not_have_account">Belum memiliki akun?</string>
-    <string name="register">Register</string>
+    <string name="register">Daftar</string>
     <string name="app_titlle">StoryIn</string>
     <string name="app_title_description">Masuk ke akunmu dan mulailah bagikan pengalaman menarikmu bersama kami!</string>
     <string name="email">Email</string>
@@ -17,11 +17,9 @@
     <string name="app_title_description_register">Daftarkan dirimu dan mulailah berbagi cerita bersama kami!</string>
     <string name="welcome_description">Baca dan berbagi pengalaman menarik dari StoryIn. Masuk atau daftar untuk mulai menjelajah cerita unik dari ribuan orang!</string>
     <string name="welcome_picture">welcome picture</string>
-    <string name="home_title">Home</string>
-    <string name="profile">Profile</string>
-    <string name="add_story_button_title">add story button</string>
+    <string name="home_title">Beranda</string>
+    <string name="title_profile">Profil</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_story">Tambah Cerita</string>
 </resources>
