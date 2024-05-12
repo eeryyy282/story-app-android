@@ -2,8 +2,10 @@ package com.example.storyappjuzairi.data.retrofit
 
 import com.example.storyappjuzairi.data.response.LoginResponse
 import com.example.storyappjuzairi.data.response.RegisterResponse
+import com.example.storyappjuzairi.data.response.StoryResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -21,4 +23,7 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
+
+    @GET("stories")
+    suspend fun getStories(): StoryResponse
 }

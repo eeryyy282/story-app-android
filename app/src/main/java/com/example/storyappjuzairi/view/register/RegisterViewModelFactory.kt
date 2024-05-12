@@ -27,7 +27,7 @@ class RegisterViewModelFactory private constructor(
             instance ?: synchronized(this) {
                 instance ?: RegisterViewModelFactory(
                     application,
-                    Injection.registerRepository()
+                    Injection.registerRepository(application)
                 )
             }.also { instance = it }
     }

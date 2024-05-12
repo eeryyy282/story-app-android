@@ -30,7 +30,7 @@ class LoginViewModelFactory private constructor(
             instance ?: synchronized(this) {
                 instance ?: LoginViewModelFactory(
                     application,
-                    Injection.loginRepository(),
+                    Injection.loginRepository(application),
                     userPreference
                 )
             }.also { instance = it }
