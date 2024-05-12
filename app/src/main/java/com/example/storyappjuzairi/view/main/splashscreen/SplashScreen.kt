@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.splashscreen
+package com.example.storyappjuzairi.view.main.splashscreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,7 +14,7 @@ import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.view.main.MainActivity
-import com.example.storyappjuzairi.view.welcome.WelcomeActivity
+import com.example.storyappjuzairi.view.main.welcome.WelcomeActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {

@@ -3,8 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp">
+    android:layout_height="120dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/transparent"
+    app:cardBackgroundColor="@color/transparent"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,9 +17,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivPhoto"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="28dp"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +31,11 @@
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins"
+            android:maxLines="1"
             android:text="TextView"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -41,10 +47,12 @@
             android:id="@+id/tvCreatedAt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins"
+            android:maxLines="1"
             android:text="TextView"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tvName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -52,11 +60,13 @@
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/poppins"
+            android:maxLines="2"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="@+id/ivPhoto"
-            app:layout_constraintEnd_toEndOf="@+id/tvCreatedAt"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tvCreatedAt"
             app:layout_constraintTop_toBottomOf="@+id/tvCreatedAt"
             app:layout_constraintVertical_bias="0.409" />

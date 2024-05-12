@@ -15,17 +15,20 @@
         android:theme="@style/Theme.StoryAppJuzairi"
         tools:targetApi="31">
         <activity
+            android:name=".view.main.detail_story.DetailStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".view.register.RegisterActivity"
+            android:name=".view.main.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.welcome.WelcomeActivity"
+            android:name=".view.main.welcome.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.splashscreen.SplashScreen"
+            android:name=".view.main.splashscreen.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

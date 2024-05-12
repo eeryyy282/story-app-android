@@ -8,12 +8,12 @@ import java.util.TimeZone
 
 object DateFormatter {
     fun formatDate(currentDate: String): String? {
-        val currentFormat = "yyyy-MM-dd'T'hh:mm:ss'Z'"
+        val currentFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         val targetFormat = "dd MMM yyyy | HH:mm"
-        val timezone = "GMT"
         val currentDf: DateFormat = SimpleDateFormat(currentFormat, Locale.getDefault())
-        currentDf.timeZone = TimeZone.getTimeZone(timezone)
+        currentDf.timeZone = TimeZone.getTimeZone("GMT")
         val targetDf: DateFormat = SimpleDateFormat(targetFormat, Locale.getDefault())
+        targetDf.timeZone = TimeZone.getDefault()
         var targetDate: String? = null
         try {
             val date = currentDf.parse(currentDate)

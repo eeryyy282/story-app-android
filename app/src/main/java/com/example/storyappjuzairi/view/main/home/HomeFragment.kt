@@ -1,18 +1,16 @@
-package com.example.storyappjuzairi.view.main.ui.home
+package com.example.storyappjuzairi.view.main.home
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyappjuzairi.data.Result
-import com.example.storyappjuzairi.data.pref.UserPreference
-import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.FragmentHomeBinding
-import com.example.storyappjuzairi.view.main.ui.adapter.StoryAdapter
+import com.example.storyappjuzairi.view.main.adapter.StoryAdapter
 import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment() {
@@ -65,22 +63,31 @@ class HomeFragment : Fragment() {
                         ).show()
                     }
                 }
+                homeViewModel.userName.observe(viewLifecycleOwner) { name ->
+                    binding.tvWelcomeUser.text = "Selamat datang, ${name}!"
+                }
+
             }
 
-        }
+            binding.rvStory.apply {
+                layoutManager = LinearLayoutManager(requireActivity())
+                adapter = storyAdapter
+            }
 
-        binding.rvStory.apply {
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = storyAdapter
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    LinearLayoutManager(requireActivity()).orientation
-                )
-            )
+            setupAnimation()
+
         }
+    }
+
+    private fun setupAnimation() {
+        ObjectAnimator.ofFloat(binding.ivWelcomeHome, View.TRANSLATION_Y, -25f, 25f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
 
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

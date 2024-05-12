@@ -4,6 +4,7 @@ package com.example.storyappjuzairi.di
 import android.content.Context
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
+import com.example.storyappjuzairi.data.repository.DetailStoryRepository
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.repository.RegisterRepository
 import com.example.storyappjuzairi.data.repository.StoryRepository
@@ -13,11 +14,22 @@ import kotlinx.coroutines.runBlocking
 
 object Injection {
 
-    fun provideRepository(context: Context): StoryRepository {
+    fun storyRepository(context: Context): StoryRepository {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getUserToken() }
         val apiService = ApiConfig.getApiService(user)
-        return StoryRepository.getInstance(apiService, pref)
+        return StoryRepository.getInstance(apiService)
+    }
+
+    fun storyDetailRepository(context: Context): DetailStoryRepository {
+        val pref = UserPreference.getInstance(context.dataStore)
+        val user = runBlocking { pref.getUserToken() }
+        val apiService = ApiConfig.getApiService(user)
+        return DetailStoryRepository.getInstance(apiService)
+    }
+
+    fun userPreference(context: Context): UserPreference {
+        return UserPreference.getInstance(context.dataStore)
     }
 
     fun registerRepository(context: Context): RegisterRepository {

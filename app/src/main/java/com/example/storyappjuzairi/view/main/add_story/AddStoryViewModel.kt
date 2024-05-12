@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.ui.add_story
+package com.example.storyappjuzairi.view.main.add_story
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

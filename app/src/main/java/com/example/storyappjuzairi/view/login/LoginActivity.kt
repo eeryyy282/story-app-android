@@ -19,7 +19,7 @@ import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.ActivityLoginBinding
 import com.example.storyappjuzairi.view.main.MainActivity
-import com.example.storyappjuzairi.view.register.RegisterActivity
+import com.example.storyappjuzairi.view.main.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

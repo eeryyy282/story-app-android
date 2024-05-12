@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.splashscreen
+package com.example.storyappjuzairi.view.main.splashscreen
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

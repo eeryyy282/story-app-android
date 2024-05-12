@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.welcome
+package com.example.storyappjuzairi.view.main.welcome
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.databinding.ActivityWelcomeBinding
 import com.example.storyappjuzairi.view.login.LoginActivity
-import com.example.storyappjuzairi.view.register.RegisterActivity
+import com.example.storyappjuzairi.view.main.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding

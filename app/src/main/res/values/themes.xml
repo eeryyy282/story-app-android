@@ -23,8 +23,7 @@
     </style>
 
     <style name="CardImageStory">
-        <item name="cornerSizeTopLeft">20%</item>
-        <item name="cornerSizeBottomLeft">20%</item>
+        <item name="cornerSize">20%</item>
     </style>
 
 </resources>

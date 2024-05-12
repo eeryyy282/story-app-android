@@ -7,4 +7,5 @@
     <color name="cream_brown">#B2A59B</color>
     <color name="light_cream_brown">#DED0B6</color>
     <color name="overlayColor">#80000000</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

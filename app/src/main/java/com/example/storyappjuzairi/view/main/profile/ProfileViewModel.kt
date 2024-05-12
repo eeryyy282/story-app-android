@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.ui.profile
+package com.example.storyappjuzairi.view.main.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

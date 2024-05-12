@@ -1,5 +1,6 @@
-package com.example.storyappjuzairi.view.main.ui.add_story
+package com.example.storyappjuzairi.view.main.add_story
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,21 @@ class AddStoryFragment : Fragment() {
     ): View {
         _binding = FragmentAddStoryBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAnimation()
+
+    }
+
+    private fun setupAnimation() {
+        ObjectAnimator.ofFloat(binding.ivWelcomeAddStory, View.TRANSLATION_Y, -25f, 25f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
     }
 
     override fun onDestroyView() {

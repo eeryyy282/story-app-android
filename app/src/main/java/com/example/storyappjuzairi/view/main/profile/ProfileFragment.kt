@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.ui.profile
+package com.example.storyappjuzairi.view.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
