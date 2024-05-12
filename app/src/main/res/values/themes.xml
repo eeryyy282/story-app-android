@@ -3,15 +3,13 @@
     <style name="Base.Theme.StoryAppJuzairi" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/gray</item>
         <item name="colorPrimaryVariant">@color/gray</item>
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowEnterTransition">@android:transition/explode</item>
-        <item name="android:windowExitTransition">@android:transition/explode</item>
 
         <item name="colorSecondary">@color/cream</item>
         <item name="colorSecondaryVariant">@color/cream</item>
         <item name="colorOnSecondary">@color/black</item>
 
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
     </style>
 
     <style name="Theme.StoryAppJuzairi" parent="Base.Theme.StoryAppJuzairi" />

@@ -1,9 +1,12 @@
 package com.example.storyappjuzairi.view.main.adapter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -37,16 +40,24 @@ class StoryAdapter :
 
         holder.itemView.setOnClickListener {
             val storyId = story.id
-
             val intentId = Intent(holder.itemView.context, DetailStoryActivity::class.java).apply {
                 putExtra(DetailStoryActivity.EXTRA_ID, storyId)
             }
-            holder.itemView.context.startActivity(intentId)
 
+            val optionCompat: ActivityOptionsCompat =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    holder.itemView.context as Activity,
+                    Pair(holder.binding.ivPhoto, "imageStoryDetail"),
+                    Pair(holder.binding.tvName, "nameStoryDetail"),
+                    Pair(holder.binding.tvDescription, "descriptionStoryDetail"),
+                    Pair(holder.binding.tvCreatedAt, "dateStoryDetail")
+                )
+
+            holder.itemView.context.startActivity(intentId, optionCompat.toBundle())
         }
     }
 
-    class MyViewHolder(private val binding: ItemStoryBinding) :
+    class MyViewHolder(val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(story: ListStoryItem) {
