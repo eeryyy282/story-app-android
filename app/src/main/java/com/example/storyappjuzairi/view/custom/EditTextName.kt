@@ -20,7 +20,7 @@ class EditTextName @JvmOverloads constructor(
 
     init {
         clearButtonImage =
-            ContextCompat.getDrawable(context, R.drawable.baseline_delete_24) as Drawable
+            ContextCompat.getDrawable(context, R.drawable.delete_left_svgrepo_com) as Drawable
         setOnTouchListener(this)
 
         addTextChangedListener(object : TextWatcher {
@@ -67,7 +67,7 @@ class EditTextName @JvmOverloads constructor(
                     MotionEvent.ACTION_DOWN -> {
                         clearButtonImage = ContextCompat.getDrawable(
                             context,
-                            R.drawable.baseline_delete_24
+                            R.drawable.delete_left_svgrepo_com
                         ) as Drawable
                         showClearButton()
                         return true
@@ -76,7 +76,7 @@ class EditTextName @JvmOverloads constructor(
                     MotionEvent.ACTION_UP -> {
                         clearButtonImage = ContextCompat.getDrawable(
                             context,
-                            R.drawable.baseline_delete_24
+                            R.drawable.delete_left_svgrepo_com
                         ) as Drawable
                         when {
                             text != null -> text?.clear()

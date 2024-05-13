@@ -53,14 +53,14 @@ class DetailStoryActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         val story = result.data
                         with(binding) {
-                            tvName.text = story?.name
-                            tvDescriptionDetail.text = story?.description
+                            tvDetailName.text = story?.name
+                            tvDetailDescription.text = story?.description
                             val formattedDate =
                                 story?.createdAt?.let { DateFormatter.formatDate(it) }
-                            tvCreatedDetail.text = formattedDate
+                            tvDetailCreated.text = formattedDate
                             Glide.with(binding.root)
                                 .load(story?.photoUrl)
-                                .into(binding.ivStoryDetail)
+                                .into(binding.ivDetailPhoto)
                         }
                     }
 

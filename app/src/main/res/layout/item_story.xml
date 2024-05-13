@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivPhoto"
+            android:id="@+id/iv_item_photo"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -28,7 +28,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tv_detail_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -40,11 +40,11 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivPhoto"
-            app:layout_constraintTop_toTopOf="@+id/ivPhoto" />
+            app:layout_constraintStart_toEndOf="@+id/iv_item_photo"
+            app:layout_constraintTop_toTopOf="@+id/iv_item_photo" />
 
         <TextView
-            android:id="@+id/tvCreatedAt"
+            android:id="@+id/tv_created_at"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -53,11 +53,11 @@
             android:text="TextView"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvName"
-            app:layout_constraintTop_toBottomOf="@+id/tvName" />
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
 
         <TextView
-            android:id="@+id/tvDescription"
+            android:id="@+id/tv_item_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -65,10 +65,10 @@
             android:fontFamily="@font/poppins"
             android:maxLines="2"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/ivPhoto"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tvCreatedAt"
-            app:layout_constraintTop_toBottomOf="@+id/tvCreatedAt"
+            app:layout_constraintStart_toStartOf="@+id/tv_created_at"
+            app:layout_constraintTop_toBottomOf="@+id/tv_created_at"
             app:layout_constraintVertical_bias="0.409" />
 
 

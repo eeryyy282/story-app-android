@@ -20,7 +20,8 @@
         <activity
             android:name=".view.main.MainActivity"
             android:exported="false"
-            android:label="@string/title_activity_main" />
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.main.register.RegisterActivity"
             android:exported="false" />

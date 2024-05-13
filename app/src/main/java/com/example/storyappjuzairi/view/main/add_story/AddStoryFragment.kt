@@ -29,7 +29,7 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun setupAnimation() {
-        ObjectAnimator.ofFloat(binding.ivWelcomeAddStory, View.TRANSLATION_Y, -25f, 25f).apply {
+        ObjectAnimator.ofFloat(binding.ivBanner, View.TRANSLATION_Y, -25f, 25f).apply {
             duration = 6000
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE

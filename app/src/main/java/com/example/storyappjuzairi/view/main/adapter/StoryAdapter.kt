@@ -47,9 +47,9 @@ class StoryAdapter :
             val optionCompat: ActivityOptionsCompat =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(
                     holder.itemView.context as Activity,
-                    Pair(holder.binding.ivPhoto, "imageStoryDetail"),
-                    Pair(holder.binding.tvName, "nameStoryDetail"),
-                    Pair(holder.binding.tvDescription, "descriptionStoryDetail"),
+                    Pair(holder.binding.ivItemPhoto, "imageStoryDetail"),
+                    Pair(holder.binding.tvDetailName, "nameStoryDetail"),
+                    Pair(holder.binding.tvItemDescription, "descriptionStoryDetail"),
                     Pair(holder.binding.tvCreatedAt, "dateStoryDetail")
                 )
 
@@ -61,11 +61,11 @@ class StoryAdapter :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(story: ListStoryItem) {
-            binding.tvName.text = story.name
-            binding.tvDescription.text = story.description
+            binding.tvDetailName.text = story.name
+            binding.tvItemDescription.text = story.description
             Glide.with(binding.root)
                 .load(story.photoUrl)
-                .into(binding.ivPhoto)
+                .into(binding.ivItemPhoto)
             val formattedDate = story.createdAt?.let { DateFormatter.formatDate(it) }
             binding.tvCreatedAt.text = formattedDate
         }

@@ -9,7 +9,7 @@
     tools:context=".view.main.welcome.WelcomeActivity">
 
     <ImageView
-        android:id="@+id/imageViewWelcome"
+        android:id="@+id/iv_app_icon_welcome"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/welcomepicture" />
 
     <TextView
-        android:id="@+id/tv_tittle"
+        android:id="@+id/tv_title_splash_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -34,7 +34,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/iv_app_icon_welcome"
         tools:alpha="100" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_tittle"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_splash_screen"
         tools:alpha="100" />
 
     <Button
@@ -65,7 +65,7 @@
         android:text="@string/register"
         android:textColor="@color/cream"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dicoding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_login"
@@ -85,7 +85,7 @@
         android:text="@string/login"
         android:textColor="@color/cream"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dicoding"
         app:layout_constraintEnd_toStartOf="@+id/btn_register"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
         tools:alpha="100" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_juzairi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -107,13 +107,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_dicoding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/dicoding_submission"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/tv_juzairi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

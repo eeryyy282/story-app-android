@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_add_story"
-        android:icon="@drawable/plus_large_svgrepo_com"
+        android:icon="@drawable/circle_plus_svgrepo_com"
         android:title="@string/title_story" />
 
     <item
