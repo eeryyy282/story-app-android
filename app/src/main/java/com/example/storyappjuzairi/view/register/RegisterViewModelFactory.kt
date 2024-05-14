@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.register
+package com.example.storyappjuzairi.view.register
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

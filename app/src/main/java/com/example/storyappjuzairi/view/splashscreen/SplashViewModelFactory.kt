@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.splashscreen
+package com.example.storyappjuzairi.view.splashscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

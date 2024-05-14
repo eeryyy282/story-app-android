@@ -1,4 +1,4 @@
-package com.example.storyappjuzairi.view.main.register
+package com.example.storyappjuzairi.view.register
 
 import android.animation.ObjectAnimator
 import android.content.Intent

@@ -15,6 +15,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            "\"https://story-api.dicoding.dev/v1/\""
+        )
     }
 
     buildTypes {
@@ -36,6 +42,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -66,5 +73,8 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.glide)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 
 }
