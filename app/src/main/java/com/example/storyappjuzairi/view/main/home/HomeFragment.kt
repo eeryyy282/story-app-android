@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
         }
 
         homeViewModel.story.observe(viewLifecycleOwner) { result ->
+            binding.swapRefreshLayout.isRefreshing = false
             if (result != null) {
                 when (result) {
                     is Result.Loading -> {
@@ -72,6 +73,10 @@ class HomeFragment : Fragment() {
             binding.rvStory.apply {
                 layoutManager = LinearLayoutManager(requireActivity())
                 adapter = storyAdapter
+            }
+
+            binding.swapRefreshLayout.setOnRefreshListener {
+                homeViewModel.findStory()
             }
 
             setupAnimation()

@@ -17,7 +17,7 @@ class RegisterRepository(
         private var instance: RegisterRepository? = null
 
         fun getInstance(
-            apiService: ApiService,
+            apiService: ApiService
         ): RegisterRepository =
             instance ?: synchronized(this) {
                 instance ?: RegisterRepository(apiService)

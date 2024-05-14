@@ -4,6 +4,7 @@ package com.example.storyappjuzairi.di
 import android.content.Context
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
+import com.example.storyappjuzairi.data.repository.AddNewStoryRepository
 import com.example.storyappjuzairi.data.repository.DetailStoryRepository
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.repository.RegisterRepository
@@ -26,6 +27,13 @@ object Injection {
         val user = runBlocking { pref.getUserToken() }
         val apiService = ApiConfig.getApiService(user)
         return DetailStoryRepository.getInstance(apiService)
+    }
+
+    fun addStoryRepository(context: Context): AddNewStoryRepository {
+        val pref = UserPreference.getInstance(context.dataStore)
+        val user = runBlocking { pref.getUserToken() }
+        val apiService = ApiConfig.getApiService(user)
+        return AddNewStoryRepository.getInstance(apiService)
     }
 
     fun userPreference(context: Context): UserPreference {

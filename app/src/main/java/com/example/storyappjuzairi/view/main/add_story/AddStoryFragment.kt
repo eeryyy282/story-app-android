@@ -17,21 +17,32 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.databinding.FragmentAddStoryBinding
+import com.example.storyappjuzairi.utils.uriToFile
 import com.example.storyappjuzairi.view.main.camera.CameraActivity
 import com.google.android.material.snackbar.Snackbar
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import reduceFileImage
 
 class AddStoryFragment : Fragment() {
 
     private var _binding: FragmentAddStoryBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: AddStoryViewModel by viewModels()
+
+    private val addStoryViewModel: AddStoryViewModel by viewModels {
+        AddStoryViewModelFactory.getInstance(requireContext())
+    }
 
     private val launchGallery = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         if (uri != null) {
-            viewModel.setSelectImageUri(uri)
+            addStoryViewModel.setSelectImageUri(uri)
             showImage()
         } else {
             Log.d("Photo picker", "Tidak ada foto yang dipilih")
@@ -44,7 +55,7 @@ class AddStoryFragment : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             val uri = result.data?.getStringExtra("image_uri")?.let { Uri.parse(it) }
             uri?.let {
-                viewModel.setSelectImageUri(it)
+                addStoryViewModel.setSelectImageUri(it)
                 showImage()
             }
         } else {
@@ -85,7 +96,56 @@ class AddStoryFragment : Fragment() {
         if (!allPermissionGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
+
+        addStoryViewModel.selectImageUri.observe(viewLifecycleOwner) {
+            showImage()
+        }
+
+        addStoryViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
+        addStoryViewModel.snackBar.observe(viewLifecycleOwner) {
+            it?.let {
+                showSnackBar(it)
+            }
+        }
+
+        addStoryViewModel.uploadSuccess.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(R.id.action_navigation_add_story_to_navigation_home)
+                resetFragment()
+            }
+        }
+
+        binding.buttonAdd.setOnClickListener {
+            val currentImageUri = addStoryViewModel.selectImageUri.value
+            if (currentImageUri != null) {
+                val imageFIle = uriToFile(currentImageUri, requireContext())
+                val reduceImageFile = imageFIle.reduceFileImage()
+                val description = binding.edAddDescription.text.toString()
+                val requestBody = description.toRequestBody("text/plain".toMediaType())
+                val requestImageFile = reduceImageFile.asRequestBody("image/jpeg".toMediaType())
+                val multiPart =
+                    MultipartBody.Part.createFormData(
+                        "photo",
+                        reduceImageFile.name,
+                        requestImageFile
+
+                    )
+                addStoryViewModel.uploadImage(multiPart, requestBody)
+            } else {
+                showSnackBar("Silakan pilih gambar terlebih dahulu")
+            }
+        }
     }
+
+    private fun resetFragment() {
+        addStoryViewModel.setSelectImageUri(null)
+        binding.edAddDescription.text.clear()
+        binding.previewImage.setImageURI(null)
+    }
+
 
     private fun allPermissionGranted() =
         ContextCompat.checkSelfPermission(
@@ -118,7 +178,7 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun showImage() {
-        val uri = viewModel.selectImageUri.value
+        val uri = addStoryViewModel.selectImageUri.value
         uri?.let {
             Log.d("Image URI", "showImage: $it")
             binding.previewImage.setImageURI(it)
@@ -140,6 +200,11 @@ class AddStoryFragment : Fragment() {
             message,
             Snackbar.LENGTH_SHORT
         ).show()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.overlay.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {
