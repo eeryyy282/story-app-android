@@ -1,12 +1,20 @@
 package com.example.storyappjuzairi.view.main.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storyappjuzairi.data.pref.SettingPreference
+import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.FragmentProfileBinding
+import com.example.storyappjuzairi.view.main.setting.SettingViewModel
+import com.example.storyappjuzairi.view.main.setting.SettingViewModelFactory
+import com.example.storyappjuzairi.view.welcome.WelcomeActivity
 
 class ProfileFragment : Fragment() {
 
@@ -18,12 +26,15 @@ class ProfileFragment : Fragment() {
         ProfileViewModelFactory.getInstance(requireContext())
     }
 
+    private val settingViewModel: SettingViewModel by viewModels {
+        SettingViewModelFactory(SettingPreference.getInstance(requireContext().dataStore))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -31,6 +42,39 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObserver()
+        logoutUser()
+
+        setupSwitchDarkMode()
+        switchListener()
+    }
+
+    private fun switchListener() {
+        binding.switchDarkMode.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingViewModel.saveThemeSetting(isChecked)
+        }
+    }
+
+    private fun setupSwitchDarkMode() {
+        settingViewModel.getThemeSettings()
+            .observe(viewLifecycleOwner) { darkMode ->
+                if (darkMode) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    binding.switchDarkMode.isChecked = true
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    binding.switchDarkMode.isChecked = false
+                }
+            }
+    }
+
+    private fun logoutUser() {
+        binding.buttonActionLogout.setOnClickListener {
+            profileViewModel.logout()
+            val intent = Intent(requireContext(), WelcomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            activity?.finish()
+        }
     }
 
     private fun setupObserver() {

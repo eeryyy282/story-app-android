@@ -30,4 +30,10 @@ class ProfileViewModel(
         }
     }
 
+    fun logout() {
+        viewModelScope.launch {
+            userPreference.clearUserData()
+        }
+    }
+
 }

@@ -7,13 +7,17 @@ import android.os.Handler
 import android.os.Looper
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyappjuzairi.R
+import com.example.storyappjuzairi.data.pref.SettingPreference
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.view.main.MainActivity
+import com.example.storyappjuzairi.view.main.setting.SettingViewModel
+import com.example.storyappjuzairi.view.main.setting.SettingViewModelFactory
 import com.example.storyappjuzairi.view.welcome.WelcomeActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -28,6 +32,20 @@ class SplashScreen : AppCompatActivity() {
             this,
             SplashViewModelFactory(userPreferences)
         )[SplashViewModel::class.java]
+
+        val settingPreference = SettingPreference.getInstance(application.dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(settingPreference)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSettings().observe(this) { darkModeActive ->
+            if (darkModeActive) {
+                delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+            } else {
+                delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+            }
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

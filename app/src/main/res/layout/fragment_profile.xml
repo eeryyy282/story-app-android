@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:layout_marginStart="32dp"
@@ -114,4 +115,70 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_title_setting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins"
+        android:text="Pengaturan"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardView3"
+        app:layout_constraintStart_toStartOf="@+id/cardView3"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+
+    <Button
+        android:id="@+id/button_action_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins"
+        android:text="Logout"
+        android:textColor="@color/white"
+        app:icon="@drawable/session_leave_svgrepo_com"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/switch_dark_mode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_change_language"
+        app:layout_constraintTop_toBottomOf="@+id/switch_dark_mode" />
+
+    <Switch
+        android:id="@+id/switch_dark_mode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
+        android:text="Mode gelap"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title_setting"
+        app:layout_constraintStart_toStartOf="@+id/tv_title_setting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_setting" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="574dp">
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <Button
+        android:id="@+id/button_change_language"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/poppins"
+        android:text="Bahasa"
+        android:textColor="@color/white"
+        app:icon="@drawable/language_translation_svgrepo_com"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/button_action_logout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/switch_dark_mode"
+        app:layout_constraintTop_toBottomOf="@+id/switch_dark_mode" />
 </androidx.constraintlayout.widget.ConstraintLayout>

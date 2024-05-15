@@ -39,6 +39,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    suspend fun clearUserData() {
+        dataStore.edit {
+            it.clear()
+        }
+    }
+
     companion object {
         @Volatile
         private var INSTANCE: UserPreference? = null
