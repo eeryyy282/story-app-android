@@ -17,6 +17,9 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by viewModels {
+        HomeViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,58 +32,50 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        setupObservers()
+        setupAnimation()
+        setupRefreshLayout()
 
-        val factory: HomeViewModelFactory = HomeViewModelFactory.getInstance(requireContext())
-        val homeViewModel: HomeViewModel by viewModels {
-            factory
-        }
+        homeViewModel.findStory()
+    }
 
-        val storyAdapter = StoryAdapter()
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.findStory()
+    }
 
-        if (homeViewModel.story.value == null) {
-            homeViewModel.findStory()
-        }
+    private fun setupRecyclerView() {
+        binding.rvStory.layoutManager = LinearLayoutManager(requireActivity())
+        binding.rvStory.adapter = StoryAdapter()
+    }
 
+    private fun setupObservers() {
         homeViewModel.story.observe(viewLifecycleOwner) { result ->
             binding.swapRefreshLayout.isRefreshing = false
-            if (result != null) {
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val storyData = result.data
-                        storyAdapter.submitList(storyData)
-                    }
-
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Snackbar.make(
-                            view,
-                            "Gagal memuat cerita",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-                homeViewModel.userName.observe(viewLifecycleOwner) { name ->
-                    binding.tvWelcomeUser.text = "Selamat datang, ${name}!"
+            when (result) {
+                is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    (binding.rvStory.adapter as StoryAdapter).submitList(result.data)
                 }
 
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Snackbar.make(requireView(), "Gagal memuat cerita", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
             }
+        }
 
-            binding.rvStory.apply {
-                layoutManager = LinearLayoutManager(requireActivity())
-                adapter = storyAdapter
-            }
+        homeViewModel.userName.observe(viewLifecycleOwner) { name ->
+            binding.tvWelcomeUser.text = "Selamat datang, $name!"
+        }
+    }
 
-            binding.swapRefreshLayout.setOnRefreshListener {
-                homeViewModel.findStory()
-            }
-
-            setupAnimation()
-
+    private fun setupRefreshLayout() {
+        binding.swapRefreshLayout.setOnRefreshListener {
+            homeViewModel.findStory()
         }
     }
 
@@ -90,9 +85,7 @@ class HomeFragment : Fragment() {
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

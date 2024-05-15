@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
@@ -120,21 +121,28 @@ class CameraActivity : AppCompatActivity() {
         val photoFile = File(filesDir, "${System.currentTimeMillis()}.jpg")
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
+        binding.progressIndicator.visibility = View.VISIBLE
+
         imageCapture?.takePicture(outputOptions, ContextCompat.getMainExecutor(this),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
+
+                    binding.progressIndicator.visibility = View.GONE
                     val intent = Intent().apply {
                         putExtra("image_uri", savedUri.toString())
                     }
                     setResult(Activity.RESULT_OK, intent)
                     finish()
+
                 }
 
                 override fun onError(exc: ImageCaptureException) {
+                    binding.progressIndicator.visibility = View.GONE
                     Snackbar.make(binding.root, "Gagal mengambil gambar", Snackbar.LENGTH_SHORT)
                         .show()
                     Log.e(TAG, "takePhoto: ${exc.message}")
+
                 }
             })
     }

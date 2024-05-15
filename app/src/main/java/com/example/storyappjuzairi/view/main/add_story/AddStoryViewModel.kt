@@ -35,8 +35,8 @@ class AddStoryViewModel(
     }
 
     fun uploadImage(photo: MultipartBody.Part, description: RequestBody) {
+        _isLoading.value = true
         viewModelScope.launch {
-            _isLoading.value = true
             try {
                 val response = repository.addNewStory(photo, description)
                 _snackBar.value = response.message
