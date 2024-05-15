@@ -42,7 +42,7 @@ class EditTextName @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Username"
+        hint = context.getString(R.string.username)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 

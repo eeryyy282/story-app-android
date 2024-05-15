@@ -19,7 +19,6 @@ class HomeViewModel(
     val story: LiveData<Result<List<ListStoryItem?>>>
         get() = _story
 
-    private val _userId = MutableLiveData<String>()
 
     private val _userName = MutableLiveData<String>()
     val userName: LiveData<String>
@@ -31,7 +30,6 @@ class HomeViewModel(
 
     private fun getUserData() {
         viewModelScope.launch {
-            _userId.value = userPreference.getUserId()
             _userName.value = userPreference.getUserName()
         }
     }

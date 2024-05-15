@@ -16,7 +16,7 @@ class RegisterViewModelFactory private constructor(
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             return RegisterViewModel(application, registerRepository) as T
         }
-        throw IllegalArgumentException("Viewmodel class tidak ditemukan")
+        throw IllegalArgumentException("viewmodel class tidak ditemukan" + modelClass.name)
     }
 
     companion object {

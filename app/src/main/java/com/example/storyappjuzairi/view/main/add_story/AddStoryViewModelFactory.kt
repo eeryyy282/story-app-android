@@ -3,6 +3,7 @@ package com.example.storyappjuzairi.view.main.add_story
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.repository.AddNewStoryRepository
 import com.example.storyappjuzairi.di.Injection
 
@@ -16,7 +17,7 @@ class AddStoryViewModelFactory(
         if (modelClass.isAssignableFrom(AddStoryViewModel::class.java)) {
             return AddStoryViewModel(addStoryRepository) as T
         } else {
-            throw IllegalArgumentException("Viewmodel class tidak ditemukan " + modelClass.name)
+            throw IllegalArgumentException("viewmodel class tidak ditemukan" + modelClass.name)
         }
     }
 

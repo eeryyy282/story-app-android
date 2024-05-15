@@ -157,12 +157,13 @@ class RegisterActivity : AppCompatActivity() {
     private fun showDialog(message: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(message)
-            .setPositiveButton("Konfirmasi") { dialog, _ ->
+            .setPositiveButton(R.string.confirmation) { dialog, _ ->
                 dialog.dismiss()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
             }
+            .setCancelable(false)
         val alertDialog = builder.create()
         alertDialog.show()
 
@@ -175,7 +176,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun showErrorDialog(errorMessage: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(errorMessage)
-            .setPositiveButton("Konfirmasi") { dialog, _ ->
+            .setPositiveButton(R.string.confirmation) { dialog, _ ->
                 dialog.dismiss()
             }
         val alertDialog = builder.create()

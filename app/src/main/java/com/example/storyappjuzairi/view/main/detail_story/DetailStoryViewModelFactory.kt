@@ -14,7 +14,7 @@ class DetailStoryViewModelFactory(
         if (modelClass.isAssignableFrom(DetailStoryViewModel::class.java)) {
             return DetailStoryViewModel(detailStoryRepository) as T
         }
-        throw IllegalArgumentException("Viewmodel class tidak ditemukan: " + modelClass.name)
+        throw IllegalArgumentException("viewmodel class tidak ditemukan" + modelClass.name)
     }
 
     companion object {

@@ -35,6 +35,9 @@ class ButtonLogin : AppCompatButton {
         setTextColor(txtColor)
         textSize = 16f
         gravity = CENTER
-        text = if (isEnabled) "Login" else "Anda Belum Mengisi Data"
+        text =
+            if (isEnabled) context.getString(R.string.text_enabled_button_login) else context.getString(
+                R.string.text_disabled_button_login
+            )
     }
 }

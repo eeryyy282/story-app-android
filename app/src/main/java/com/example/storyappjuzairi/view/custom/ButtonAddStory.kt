@@ -33,6 +33,9 @@ class ButtonAddStory : AppCompatButton {
         setTextColor(txtColor)
         textSize = 14f
         gravity = CENTER
-        text = if (isEnabled) "Tambahkan cerita!" else "Ceritakan cerita anda terlebih dahulu"
+        text =
+            if (isEnabled) context.getString(R.string.text_enbled_button_add_story) else context.getString(
+                R.string.text_disable_button_add_story
+            )
     }
 }

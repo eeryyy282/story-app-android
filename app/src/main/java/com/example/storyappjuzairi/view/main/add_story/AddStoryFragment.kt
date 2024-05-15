@@ -52,7 +52,7 @@ class AddStoryFragment : Fragment() {
             addStoryViewModel.setSelectImageUri(uri)
             showImage()
         } else {
-            Log.d("Photo picker", "Tidak ada foto yang dipilih")
+            Log.d(getString(R.string.photo_picker_title), getString(R.string.no_photo_selected))
         }
     }
 
@@ -66,7 +66,7 @@ class AddStoryFragment : Fragment() {
                 showImage()
             }
         } else {
-            Log.d("Camera", "Gagal mengambil gambar")
+            Log.d(getString(R.string.camera_title), getString(R.string.failed_take_photo))
         }
     }
 
@@ -74,11 +74,11 @@ class AddStoryFragment : Fragment() {
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            Log.d("Photo picker", "Izin diberikan")
-            showSnackBar("Izin diberikan")
+            Log.d(getString(R.string.photo_picker_title), getString(R.string.acces_granted))
+            showSnackBar(getString(R.string.acces_granted))
         } else {
-            Log.d("Photo picker", "Izin ditolak")
-            showSnackBar("Izin ditolak")
+            Log.d(getString(R.string.photo_picker_title), getString(R.string.acces_denied))
+            showSnackBar(getString(R.string.acces_denied))
         }
     }
 
@@ -147,7 +147,7 @@ class AddStoryFragment : Fragment() {
 
                     } catch (e: Exception) {
                         appExecutors.mainThread.execute {
-                            showSnackBar("Terjadi kesalahan: ${e.message}")
+                            showSnackBar(getString(R.string.add_story_failed_dialog, e.message))
                             binding.buttonAdd.isEnabled = true
                             showLoading(false)
                         }
@@ -157,7 +157,7 @@ class AddStoryFragment : Fragment() {
 
             } else {
 
-                showSnackBar("Silakan pilih atau ambil gambar terlebih dahulu")
+                showSnackBar(getString(R.string.pick_or_capture_photo_dialog))
 
             }
         }
@@ -249,8 +249,11 @@ class AddStoryFragment : Fragment() {
         if (isPhotoPickerAvailable()) {
             launchGallery.launch("image/*")
         } else {
-            Log.d("Photo picker", "Photo picker tidak tersedia di perangkat ini")
-            showSnackBar("Photo picker tidak tersedia di perangkat ini")
+            Log.d(
+                getString(R.string.photo_picker_title),
+                getString(R.string.photo_picker_not_available)
+            )
+            showSnackBar(getString(R.string.photo_picker_not_available))
         }
     }
 

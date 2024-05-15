@@ -33,6 +33,9 @@ class ButtonRegister : AppCompatButton {
         setTextColor(txtColor)
         textSize = 16f
         gravity = Gravity.CENTER
-        text = if (isEnabled) "Register" else "Anda Belum Mengisi Data"
+        text =
+            if (isEnabled) context.getString(R.string.text_enabled_button_register) else context.getString(
+                R.string.text_disabled_button_register
+            )
     }
 }

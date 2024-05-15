@@ -144,7 +144,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showDialog(message: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(message)
-            .setPositiveButton("Konfirmasi") { dialog, _ ->
+            .setPositiveButton(getString(R.string.confirmation)) { dialog, _ ->
                 dialog.dismiss()
                 val intent = Intent(this, MainActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -152,6 +152,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+            .setCancelable(false)
         val alertDialog = builder.create()
         alertDialog.show()
 
@@ -164,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showErrorDialog(errorMessage: String) {
         val builder = AlertDialog.Builder(this)
             .setMessage(errorMessage)
-            .setPositiveButton("Konfirmasi") { dialog, _ ->
+            .setPositiveButton(getString(R.string.confirmation)) { dialog, _ ->
                 dialog.dismiss()
             }
         val alertDialog = builder.create()

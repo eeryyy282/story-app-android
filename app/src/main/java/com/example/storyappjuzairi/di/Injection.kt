@@ -29,6 +29,7 @@ object Injection {
         return DetailStoryRepository.getInstance(apiService)
     }
 
+
     fun addStoryRepository(context: Context): AddNewStoryRepository {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getUserToken() }

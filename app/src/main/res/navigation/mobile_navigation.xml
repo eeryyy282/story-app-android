@@ -15,7 +15,7 @@
         android:id="@+id/navigation_add_story"
         android:name="com.example.storyappjuzairi.view.main.add_story.AddStoryFragment"
         android:label="@string/title_story"
-        tools:layout="@layout/fragment_add_story" >
+        tools:layout="@layout/fragment_add_story">
         <action
             android:id="@+id/action_navigation_add_story_to_navigation_home"
             app:destination="@id/navigation_home" />

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.Result
 import com.example.storyappjuzairi.databinding.FragmentHomeBinding
 import com.example.storyappjuzairi.view.main.adapter.StoryAdapter
@@ -62,14 +63,17 @@ class HomeFragment : Fragment() {
 
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
-                    Snackbar.make(requireView(), "Gagal memuat cerita", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        requireView(),
+                        getString(R.string.failed_load_story), Snackbar.LENGTH_SHORT
+                    )
                         .show()
                 }
             }
         }
 
         homeViewModel.userName.observe(viewLifecycleOwner) { name ->
-            binding.tvWelcomeUser.text = "Selamat datang, $name!"
+            binding.tvWelcomeUser.text = getString(R.string.welcome_user, name)
         }
     }
 

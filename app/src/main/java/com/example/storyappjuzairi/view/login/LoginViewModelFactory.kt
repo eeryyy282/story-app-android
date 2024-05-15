@@ -17,7 +17,7 @@ class LoginViewModelFactory private constructor(
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(application, loginRepository, userPreference) as T
         }
-        throw IllegalArgumentException("Viewmodel class tidak ditemukan")
+        throw IllegalArgumentException("viewmodel class tidak ditemukan" + modelClass.name)
     }
 
     companion object {

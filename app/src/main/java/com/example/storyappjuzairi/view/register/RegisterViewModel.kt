@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.repository.RegisterRepository
 import com.example.storyappjuzairi.data.response.RegisterResponse
 import com.google.gson.Gson
@@ -35,16 +36,20 @@ class RegisterViewModel(
             try {
                 registerRepository.registerUser(name, email, password)
                 _loading.postValue(false)
-                _showSuccessDialog.postValue("Registrasi berhasil!")
+                _showSuccessDialog.postValue(getApplication<Application>().getString(R.string.register_succes))
             } catch (e: HttpException) {
                 _loading.postValue(false)
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, RegisterResponse::class.java)
-                val errorMessage = errorBody.message ?: "Terjadi kesalahan saat registrasi"
+                val errorMessage =
+                    errorBody.message
+                        ?: getApplication<Application>().getString(R.string.register_error)
                 _showErrorDialog.postValue(errorMessage)
             } catch (e: Exception) {
                 _loading.postValue(false)
-                _showErrorDialog.postValue("Terjadi kesalahan saat registrasi: ${e.message}")
+                _showErrorDialog.postValue(
+                    R.string.register_error_with_error_messege.toString()
+                )
             }
         }
     }

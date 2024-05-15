@@ -34,7 +34,7 @@ class EditTextEmail @JvmOverloads constructor(
                 if (isValidEmail(s.toString())) {
                     error = null
                 } else {
-                    setError("Email tidak valid", null)
+                    setError(context.getString(R.string.invalid_email), null)
                 }
             }
 
@@ -47,7 +47,7 @@ class EditTextEmail @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Email"
+        hint = context.getString(R.string.email)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 

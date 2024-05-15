@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.response.LoginResponse
@@ -42,7 +43,7 @@ class LoginViewModel(
                 val username = loginResult?.name
                 val userToken = loginResult?.token
                 _loading.postValue(false)
-                _showSuccessDialog.postValue("Login berhasil")
+                _showSuccessDialog.postValue(getApplication<Application>().getString(R.string.login_succes_dialog))
                 userToken?.let { token ->
                     userId?.let { id ->
                         username?.let { name ->
@@ -54,11 +55,14 @@ class LoginViewModel(
                 _loading.postValue(false)
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-                val errorMessage = errorBody.message ?: "Terjadi kesalahan saat login"
+                val errorMessage = errorBody.message
+                    ?: getApplication<Application>().getString(R.string.login_error_messege)
                 _showErrorDialog.postValue(errorMessage)
             } catch (e: Exception) {
                 _loading.postValue(false)
-                _showErrorDialog.postValue("Login gagal: ${e.message}")
+                _showErrorDialog.postValue(
+                    getApplication<Application>().getString(R.string.login_failed_dialog)
+                )
             }
         }
     }

@@ -68,7 +68,7 @@ class DetailStoryActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         Snackbar.make(
                             binding.root,
-                            "Gagal memuat detail cerita",
+                            getString(R.string.failed_load_story_detail),
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }

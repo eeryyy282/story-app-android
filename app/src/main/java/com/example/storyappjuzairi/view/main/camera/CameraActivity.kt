@@ -121,7 +121,7 @@ class CameraActivity : AppCompatActivity() {
             } catch (exc: Exception) {
                 Snackbar.make(
                     binding.root,
-                    "Gagal memunculkan kamera",
+                    getString(R.string.failed_start_camera),
                     Snackbar.LENGTH_SHORT
                 ).show()
                 Log.e(TAG, "startCamera: ${exc.message}")
@@ -146,7 +146,7 @@ class CameraActivity : AppCompatActivity() {
 
                 override fun onError(exc: ImageCaptureException) {
                     binding.progressIndicator.visibility = View.GONE
-                    Snackbar.make(binding.root, "Gagal mengambil gambar", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.root, R.string.failed_take_photo, Snackbar.LENGTH_SHORT)
                         .show()
                     Log.e(TAG, "takePhoto: ${exc.message}")
 

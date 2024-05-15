@@ -51,7 +51,7 @@ class EditTextPassword @JvmOverloads constructor(
 
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().length < 8) {
-                    setError("Password tidak boleh kurang dari 8 karakter", null)
+                    setError(context.getString(R.string.password_error_length), null)
                 } else {
                     error = null
                 }
@@ -62,7 +62,7 @@ class EditTextPassword @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Password"
+        hint = context.getString(R.string.password)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 

@@ -11,7 +11,7 @@ class SplashViewModelFactory(private val userPreference: UserPreference) :
         if (modelClass.isAssignableFrom(SplashViewModel::class.java)) {
             return SplashViewModel(userPreference) as T
         } else {
-            throw IllegalArgumentException("ViewModel tidak ditemukan " + modelClass.name)
+            throw IllegalArgumentException("viewmodel class tidak ditemukan" + modelClass.name)
         }
     }
 
