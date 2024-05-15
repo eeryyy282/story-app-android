@@ -13,6 +13,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -31,6 +32,7 @@ class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+    private val cameraViewModel: CameraViewModel by viewModels()
 
     private val orientationEventListener by lazy {
         object : OrientationEventListener(this) {
@@ -79,6 +81,16 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
         binding.captureImage.setOnClickListener { takePhoto() }
+
+        cameraViewModel.imageUri.observe(this) { uri ->
+            uri?.let {
+                val intent = Intent().apply {
+                    putExtra("image_uri", it.toString())
+                }
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+        }
     }
 
     public override fun onResume() {
@@ -127,13 +139,8 @@ class CameraActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-
                     binding.progressIndicator.visibility = View.GONE
-                    val intent = Intent().apply {
-                        putExtra("image_uri", savedUri.toString())
-                    }
-                    setResult(Activity.RESULT_OK, intent)
-                    finish()
+                    cameraViewModel.setImageUri(savedUri)
 
                 }
 
