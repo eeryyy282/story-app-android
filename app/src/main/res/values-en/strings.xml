@@ -75,5 +75,11 @@
     <string name="banner_image_profile">Profile banner image</string>
     <string name="user_id_title">User ID</string>
     <string name="username_title">Username</string>
-
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="title_setting">Settings</string>
+    <string name="logout_title">Logout</string>
+    <string name="dark_mode_title">Dark mode</string>
+    <string name="language">Language</string>
 </resources>

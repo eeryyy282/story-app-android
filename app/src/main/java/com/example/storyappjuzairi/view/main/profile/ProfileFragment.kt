@@ -2,13 +2,16 @@ package com.example.storyappjuzairi.view.main.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.pref.SettingPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.FragmentProfileBinding
@@ -46,6 +49,13 @@ class ProfileFragment : Fragment() {
 
         setupSwitchDarkMode()
         switchListener()
+        changeLanguage()
+    }
+
+    private fun changeLanguage() {
+        binding.buttonChangeLanguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
     }
 
     private fun switchListener() {
@@ -69,11 +79,24 @@ class ProfileFragment : Fragment() {
 
     private fun logoutUser() {
         binding.buttonActionLogout.setOnClickListener {
-            profileViewModel.logout()
-            val intent = Intent(requireContext(), WelcomeActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            activity?.finish()
+            dialogConfirmationLogout()
+        }
+    }
+
+    private fun dialogConfirmationLogout() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle(getString(R.string.logout_title))
+            setMessage(getString(R.string.logout_confirmation))
+            setPositiveButton(getString(R.string.yes)) { _, _ ->
+                profileViewModel.logout()
+                val intent = Intent(requireContext(), WelcomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                activity?.finish()
+            }
+            setNegativeButton(getString(R.string.no), null)
+            create()
+            show()
         }
     }
 

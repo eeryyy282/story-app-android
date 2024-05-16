@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Having themes.xml for night-v31 because of the priority order of the resource qualifiers.
+    -->
+    <style name="Theme.StoryAppJuzairi.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault.DayNight">
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryVariant">@color/gray</item>
+
+        <item name="colorSecondary">@color/cream</item>
+        <item name="colorSecondaryVariant">@color/cream</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="appWidgetRadius">@android:dimen/system_app_widget_background_radius</item>
+        <item name="appWidgetInnerRadius">@android:dimen/system_app_widget_inner_radius</item>
+    </style>
+</resources>

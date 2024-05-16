@@ -122,7 +122,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins"
-        android:text="Pengaturan"
+        android:text="@string/title_setting"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/cardView3"
@@ -137,7 +137,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins"
-        android:text="Logout"
+        android:text="@string/logout_title"
         android:textColor="@color/white"
         app:icon="@drawable/session_leave_svgrepo_com"
         app:iconTint="@color/white"
@@ -146,25 +146,19 @@
         app:layout_constraintStart_toEndOf="@+id/button_change_language"
         app:layout_constraintTop_toBottomOf="@+id/switch_dark_mode" />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_dark_mode"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
-        android:text="Mode gelap"
+        android:text="@string/dark_mode_title"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_title_setting"
         app:layout_constraintStart_toStartOf="@+id/tv_title_setting"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_setting" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="574dp">
-
-    </com.google.android.material.chip.ChipGroup>
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_setting"
+        app:trackTint="@color/cream"
+        app:thumbTint="@color/gray" />
 
     <Button
         android:id="@+id/button_change_language"
@@ -173,7 +167,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins"
-        android:text="Bahasa"
+        android:text="@string/language"
         android:textColor="@color/white"
         app:icon="@drawable/language_translation_svgrepo_com"
         app:iconTint="@color/white"

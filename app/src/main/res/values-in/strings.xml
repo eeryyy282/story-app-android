@@ -75,4 +75,11 @@
     <string name="banner_image_profile">Gambar banner profil</string>
     <string name="user_id_title">User ID</string>
     <string name="username_title">Username</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">Deskripsi widget</string>
+    <string name="title_setting">Pengaturan</string>
+    <string name="logout_title">Logout</string>
+    <string name="dark_mode_title">Mode gelap</string>
+    <string name="language">Bahasa</string>
 </resources>

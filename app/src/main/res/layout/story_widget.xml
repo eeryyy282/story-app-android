@@ -1,0 +1,13 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.StoryAppJuzairi.AppWidget.Container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.StoryAppJuzairi.AppWidgetContainer">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWidgetStory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
