@@ -33,6 +33,7 @@
                 android:resource="@xml/story_widget_info" />
         </receiver>
 
+
         <activity
             android:name=".view.main.camera.CameraActivity"
             android:exported="false" />
@@ -71,7 +72,9 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- suppress AndroidDomInspection -->
+        </provider>
+
+        <!-- suppress AndroidDomInspection -->
         <service
             android:name="com.google.android.gms.metadata.ModuleDependencies"
             android:enabled="false"
@@ -85,6 +88,15 @@
                 android:name="photopicker_activity:0:required"
                 android:value="" />
         </service>
+        <service
+            android:name=".view.widget.StoryWidgetService"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS">
+            <intent-filter>
+                <action android:name="android.widget.RemoteViewsService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

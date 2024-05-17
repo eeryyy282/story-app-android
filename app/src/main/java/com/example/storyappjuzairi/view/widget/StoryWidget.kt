@@ -3,40 +3,40 @@ package com.example.storyappjuzairi.view.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
+import android.widget.RemoteViews
 import com.example.storyappjuzairi.R
+import com.example.storyappjuzairi.utils.AppExecutors
 
-/**
- * Implementation of App Widget functionality.
- */
 class StoryWidget : AppWidgetProvider() {
+    private val appExecutors = AppExecutors()
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
+            appExecutors.diskIO.execute {
+                updateAppWidget(context, appWidgetManager, appWidgetId)
+            }
         }
     }
 
-    override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
+    private fun updateAppWidget(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetId: Int
+    ) {
+        val rv = RemoteViews(context.packageName, R.layout.story_widget)
+        val intent = Intent(context, StoryWidgetService::class.java).apply {
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+        }
+
+        rv.setRemoteAdapter(R.id.widget_list_view, intent)
+        rv.setEmptyView(R.id.widget_list_view, R.id.empty_view)
+
+        appWidgetManager.updateAppWidget(appWidgetId, rv)
     }
 
-    override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
-}
-
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-    val widgetText = context.getString(R.string.appwidget_text)
-    // Construct the RemoteViews object
-
-
-    // Instruct the widget manager to update the widget
 }

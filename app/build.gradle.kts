@@ -45,9 +45,7 @@ android {
         buildConfig = true
     }
 }
-
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -73,11 +71,13 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+    implementation(libs.okhttp3.integration)
+
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.exifinterface)
 
     implementation(libs.androidx.swiperefreshlayout)
-
 }

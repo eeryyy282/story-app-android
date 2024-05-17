@@ -9,6 +9,7 @@ import com.example.storyappjuzairi.data.repository.DetailStoryRepository
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.repository.RegisterRepository
 import com.example.storyappjuzairi.data.repository.StoryRepository
+import com.example.storyappjuzairi.data.repository.WidgetStoryRepository
 import com.example.storyappjuzairi.data.retrofit.ApiConfig
 import kotlinx.coroutines.runBlocking
 
@@ -27,6 +28,13 @@ object Injection {
         val user = runBlocking { pref.getUserToken() }
         val apiService = ApiConfig.getApiService(user)
         return DetailStoryRepository.getInstance(apiService)
+    }
+
+    fun widgetStoryRepository(context: Context): WidgetStoryRepository {
+        val pref = UserPreference.getInstance(context.dataStore)
+        val user = runBlocking { pref.getUserToken() }
+        val apiService = ApiConfig.getApiService(user)
+        return WidgetStoryRepository.getInstance(apiService)
     }
 
 
