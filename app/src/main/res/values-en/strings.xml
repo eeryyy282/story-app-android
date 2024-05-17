@@ -82,4 +82,11 @@
     <string name="logout_title">Logout</string>
     <string name="dark_mode_title">Dark mode</string>
     <string name="language">Language</string>
+    <string name="logout_confirmation">Are you sure you want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="no_story_widget">No stories</string>
+    <string name="story_description_widget">Story description</string>
+    <string name="story_image_widget">Story image widget</string>
+
 </resources>

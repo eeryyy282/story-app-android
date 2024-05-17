@@ -13,6 +13,7 @@
             android:id="@+id/iv_item_photo_widget"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/story_image_widget"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
@@ -23,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/poppins"
-            android:text="Deskripsi cerita"
+            android:text="@string/story_description_widget"
             android:textSize="16sp" />
 
     </LinearLayout>

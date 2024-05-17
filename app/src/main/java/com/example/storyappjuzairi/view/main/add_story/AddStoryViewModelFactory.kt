@@ -3,7 +3,6 @@ package com.example.storyappjuzairi.view.main.add_story
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.repository.AddNewStoryRepository
 import com.example.storyappjuzairi.di.Injection
 
