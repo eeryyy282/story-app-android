@@ -87,4 +87,5 @@
     <string name="no_story_widget">Tidak ada cerita</string>
     <string name="story_description_widget">Deskripsi cerita</string>
     <string name="story_image_widget">gamber cerita widget</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
