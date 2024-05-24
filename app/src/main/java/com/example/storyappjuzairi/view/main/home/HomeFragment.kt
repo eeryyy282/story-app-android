@@ -1,6 +1,7 @@
 package com.example.storyappjuzairi.view.main.home
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.Result
 import com.example.storyappjuzairi.databinding.FragmentHomeBinding
 import com.example.storyappjuzairi.view.main.adapter.StoryAdapter
+import com.example.storyappjuzairi.view.maps.MapsActivity
 import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment() {
@@ -36,14 +38,23 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
         setupAnimation()
+        setupAction()
         setupRefreshLayout()
 
         homeViewModel.findStory()
     }
 
+
     override fun onResume() {
         super.onResume()
         homeViewModel.findStory()
+    }
+
+    private fun setupAction() {
+        binding.buttonMaps.setOnClickListener {
+            val intentMaps = Intent(requireActivity(), MapsActivity::class.java)
+            startActivity(intentMaps)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -85,7 +96,12 @@ class HomeFragment : Fragment() {
 
     private fun setupAnimation() {
         ObjectAnimator.ofFloat(binding.ivWelcomeHome, View.TRANSLATION_Y, -25f, 25f).apply {
-            duration = 6000
+            duration = 5900
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+        ObjectAnimator.ofFloat(binding.ivBennerHome2, View.TRANSLATION_Y, -30f, 30f).apply {
+            duration = 6500
             repeatCount = ObjectAnimator.INFINITE
             repeatMode = ObjectAnimator.REVERSE
         }.start()

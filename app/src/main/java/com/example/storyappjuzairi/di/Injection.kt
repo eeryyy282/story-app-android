@@ -8,6 +8,7 @@ import com.example.storyappjuzairi.data.repository.AddNewStoryRepository
 import com.example.storyappjuzairi.data.repository.DetailStoryRepository
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.repository.RegisterRepository
+import com.example.storyappjuzairi.data.repository.StoryLocationRepository
 import com.example.storyappjuzairi.data.repository.StoryRepository
 import com.example.storyappjuzairi.data.repository.WidgetStoryRepository
 import com.example.storyappjuzairi.data.retrofit.ApiConfig
@@ -21,6 +22,13 @@ object Injection {
         val user = runBlocking { pref.getUserToken() }
         val apiService = ApiConfig.getApiService(user)
         return StoryRepository.getInstance(apiService)
+    }
+
+    fun storyLocationRepository(context: Context): StoryLocationRepository {
+        val pref = UserPreference.getInstance(context.dataStore)
+        val user = runBlocking { pref.getUserToken() }
+        val apiService = ApiConfig.getApiService(user)
+        return StoryLocationRepository.getInstance(apiService)
     }
 
     fun storyDetailRepository(context: Context): DetailStoryRepository {
