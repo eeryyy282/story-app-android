@@ -1,16 +1,20 @@
 package com.example.storyappjuzairi.view.maps
 
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.Result
 import com.example.storyappjuzairi.databinding.ActivityMapsBinding
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,7 +45,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(-0.7893, 113.9213)))
+        setupMapStyle()
     }
+
 
     private fun setupViewModel() {
         mapsViewModel.getStoryLocation()
@@ -53,17 +60,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    storyLocation.data.let { result ->
-                        for (location in result) {
-                            location?.let {
-                                val latLng = LatLng(it.lat!!, it.lon!!)
-                                mMap.addMarker(
-                                    MarkerOptions()
-                                        .position(latLng)
-                                        .title(it.name)
-                                )
-                            }
-                        }
+                    storyLocation.data.forEach { data ->
+                        val latLng = LatLng(data?.lat!!, data.lon!!)
+                        mMap.addMarker(
+                            MarkerOptions()
+                                .position(latLng)
+                                .title(data.name)
+                                .snippet(data.description)
+                        )
+
                     }
                 }
 
@@ -78,5 +83,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
         }
+    }
+
+    private fun setupMapStyle() {
+        try {
+            val success = mMap.setMapStyle(
+                MapStyleOptions.loadRawResourceStyle(
+                    this,
+                    R.raw.map_style_story_app
+                )
+            )
+            if (!success) {
+                Log.e(TAG, "Style parsing gagal")
+            }
+        } catch (exception: Resources.NotFoundException) {
+            Log.e(TAG, "Error: ", exception)
+        }
+    }
+
+    companion object {
+        private const val TAG = "MapsActivity"
     }
 }
