@@ -2,6 +2,7 @@ package com.example.storyappjuzairi.di
 
 
 import android.content.Context
+import com.example.storyappjuzairi.data.database.StoryDatabase
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.data.repository.AddNewStoryRepository
@@ -21,7 +22,8 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getUserToken() }
         val apiService = ApiConfig.getApiService(user)
-        return StoryRepository.getInstance(apiService)
+        val storyDatabase = StoryDatabase.getInstance(context)
+        return StoryRepository.getInstance(storyDatabase, apiService)
     }
 
     fun storyLocationRepository(context: Context): StoryLocationRepository {
