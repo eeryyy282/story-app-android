@@ -1,25 +1,27 @@
 package com.example.storyappjuzairi.data.repository
 
-import com.example.storyappjuzairi.data.Result
+import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.example.storyappjuzairi.data.paging.StoryPagingSource
 import com.example.storyappjuzairi.data.response.ListStoryItem
 import com.example.storyappjuzairi.data.retrofit.ApiService
 
 class StoryRepository private constructor(
     private val apiService: ApiService
 ) {
-    suspend fun getStory(): Result<List<ListStoryItem?>> {
-        try {
 
-            val response = apiService.getStories()
-            if (response.error == true) {
-                return Result.Error("Error: ${response.message}")
-            } else {
-                val story = response.listStory ?: emptyList()
-                return Result.Success(story)
+    fun getStory(): LiveData<PagingData<ListStoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                StoryPagingSource(apiService)
             }
-        } catch (e: Exception) {
-            return Result.Error(e.message.toString())
-        }
+        ).liveData
     }
 
     companion object {

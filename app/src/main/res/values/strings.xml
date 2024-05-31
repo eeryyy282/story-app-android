@@ -92,4 +92,6 @@
     <string name="button_text_banner_2_home">Cari tahu!</string>
     <string name="image_view_banner_2_home">gambar banner 2 home</string>
     <string name="switch_text_location">Tampilkan lokasi saya</string>
+    <string name="item_msg_error_text">Tidak dapat memuat cerita</string>
+    <string name="retry_item_story_button_text">Muat Lagi</string>
 </resources>

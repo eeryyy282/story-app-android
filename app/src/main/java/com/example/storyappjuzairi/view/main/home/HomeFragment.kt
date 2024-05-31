@@ -6,12 +6,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.storyappjuzairi.R
-import com.example.storyappjuzairi.data.Result
 import com.example.storyappjuzairi.databinding.FragmentHomeBinding
+import com.example.storyappjuzairi.view.main.adapter.LoadingStateAdapter
 import com.example.storyappjuzairi.view.main.adapter.StoryAdapter
 import com.example.storyappjuzairi.view.maps.MapsActivity
 import com.google.android.material.snackbar.Snackbar
@@ -39,16 +41,8 @@ class HomeFragment : Fragment() {
         setupObservers()
         setupAnimation()
         setupAction()
-        setupRefreshLayout()
-
-        homeViewModel.findStory()
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        homeViewModel.findStory()
-    }
 
     private fun setupAction() {
         binding.buttonMaps.setOnClickListener {
@@ -58,41 +52,39 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        val storyAdapter = StoryAdapter()
+
         binding.rvStory.layoutManager = LinearLayoutManager(requireActivity())
-        binding.rvStory.adapter = StoryAdapter()
+        binding.rvStory.adapter = storyAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                storyAdapter.retry()
+            }
+        )
+
+        homeViewModel.story.observe(requireActivity()) {
+            storyAdapter.submitData(lifecycle, it)
+        }
+
+        storyAdapter.addLoadStateListener { loadState ->
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+            if (loadState.source.refresh is LoadState.Error) {
+                val error = (loadState.source.refresh as LoadState.Error).error
+                Snackbar.make(
+                    binding.root,
+                    "Error: ${error.message}",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+
+        }
     }
 
     private fun setupObservers() {
-        homeViewModel.story.observe(viewLifecycleOwner) { result ->
-            binding.swapRefreshLayout.isRefreshing = false
-            when (result) {
-                is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    (binding.rvStory.adapter as StoryAdapter).submitList(result.data)
-                }
-
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Snackbar.make(
-                        requireView(),
-                        getString(R.string.failed_load_story), Snackbar.LENGTH_SHORT
-                    )
-                        .show()
-                }
-            }
-        }
-
         homeViewModel.userName.observe(viewLifecycleOwner) { name ->
             binding.tvWelcomeUser.text = getString(R.string.welcome_user, name)
         }
     }
 
-    private fun setupRefreshLayout() {
-        binding.swapRefreshLayout.setOnRefreshListener {
-            homeViewModel.findStory()
-        }
-    }
 
     private fun setupAnimation() {
         ObjectAnimator.ofFloat(binding.ivWelcomeHome, View.TRANSLATION_Y, -25f, 25f).apply {
