@@ -27,8 +27,7 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -42,7 +41,6 @@ class HomeFragment : Fragment() {
         setupAnimation()
         setupAction()
     }
-
 
     private fun setupAction() {
         binding.buttonMaps.setOnClickListener {
@@ -66,37 +64,41 @@ class HomeFragment : Fragment() {
         }
 
         storyAdapter.addLoadStateListener { loadState ->
-            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-            if (loadState.source.refresh is LoadState.Error) {
-                val error = (loadState.source.refresh as LoadState.Error).error
-                Snackbar.make(
-                    binding.root,
-                    "Error: ${error.message}",
-                    Snackbar.LENGTH_SHORT
-                ).show()
+            _binding?.let { binding ->
+                binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+                if (loadState.source.refresh is LoadState.Error) {
+                    val error = (loadState.source.refresh as LoadState.Error).error
+                    Snackbar.make(
+                        binding.root,
+                        "Error: ${error.message}",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
-
         }
     }
 
     private fun setupObservers() {
         homeViewModel.userName.observe(viewLifecycleOwner) { name ->
-            binding.tvWelcomeUser.text = getString(R.string.welcome_user, name)
+            _binding?.let { binding ->
+                binding.tvWelcomeUser.text = getString(R.string.welcome_user, name)
+            }
         }
     }
 
-
     private fun setupAnimation() {
-        ObjectAnimator.ofFloat(binding.ivWelcomeHome, View.TRANSLATION_Y, -25f, 25f).apply {
-            duration = 5900
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
-        ObjectAnimator.ofFloat(binding.ivBennerHome2, View.TRANSLATION_Y, -30f, 30f).apply {
-            duration = 6500
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
+        _binding?.let { binding ->
+            ObjectAnimator.ofFloat(binding.ivWelcomeHome, View.TRANSLATION_Y, -25f, 25f).apply {
+                duration = 5900
+                repeatCount = ObjectAnimator.INFINITE
+                repeatMode = ObjectAnimator.REVERSE
+            }.start()
+            ObjectAnimator.ofFloat(binding.ivBennerHome2, View.TRANSLATION_Y, -30f, 30f).apply {
+                duration = 6500
+                repeatCount = ObjectAnimator.INFINITE
+                repeatMode = ObjectAnimator.REVERSE
+            }.start()
+        }
     }
 
     override fun onDestroyView() {

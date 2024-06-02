@@ -50,10 +50,10 @@
             android:text="@string/date"
             android:textSize="16sp"
             android:transitionName="dateStoryDetail"
-            app:layout_constraintEnd_toEndOf="@+id/tv_detail_name"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
+            app:layout_constraintEnd_toEndOf="@+id/tvLocation"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tvLocation"
+            app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
 
         <TextView
             android:id="@+id/tv_detail_description"
@@ -66,7 +66,7 @@
             android:transitionName="descriptionStoryDetail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tv_detail_created"
-            app:layout_constraintStart_toStartOf="@+id/tv_detail_created"
+            app:layout_constraintStart_toStartOf="@+id/tvLocation"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_created" />
 
         <ProgressBar
@@ -78,6 +78,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="@string/text_location"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_detail_name"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/tv_detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

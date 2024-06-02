@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.Result
 import com.example.storyappjuzairi.databinding.ActivityDetailStoryBinding
+import com.example.storyappjuzairi.di.Injection
 import com.example.storyappjuzairi.utils.DateFormatter
 import com.google.android.material.snackbar.Snackbar
 
@@ -31,7 +32,10 @@ class DetailStoryActivity : AppCompatActivity() {
         }
 
         val factoryStoryDetail: DetailStoryViewModelFactory =
-            DetailStoryViewModelFactory.getInstance(application)
+            DetailStoryViewModelFactory.getInstance(
+                application,
+                Injection.storyDetailRepository(this)
+            )
         detailStoryViewModel =
             ViewModelProvider(this, factoryStoryDetail)[DetailStoryViewModel::class.java]
 
@@ -74,6 +78,9 @@ class DetailStoryActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+        detailStoryViewModel.locationName.observe(this) { locationName ->
+            binding.tvLocation.text = locationName
         }
     }
 

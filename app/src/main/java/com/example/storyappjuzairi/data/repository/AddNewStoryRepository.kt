@@ -8,9 +8,11 @@ import okhttp3.RequestBody
 class AddNewStoryRepository(private val apiService: ApiService) {
     suspend fun addNewStory(
         file: MultipartBody.Part,
-        description: RequestBody
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
     ): AddNewStoryResponse {
-        return apiService.addStories(file, description)
+        return apiService.addStories(file, description, lat, lon)
     }
 
 

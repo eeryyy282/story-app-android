@@ -88,4 +88,6 @@
     <string name="no_story_widget">ストーリーがありません</string>
     <string name="story_description_widget">ストーリーの説明</string>
     <string name="story_image_widget">ウィジェットのストーリー画像</string>
+    <string name="description_banner_2_home">インドネシア各地の物語！どの地域に興味がありますか？今すぐ見つけてください！</string>
+    <string name="button_text_banner_2_home">知っておくべき話！</string>
 </resources>
