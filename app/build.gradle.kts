@@ -92,4 +92,12 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
+    androidTestImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+
 }
