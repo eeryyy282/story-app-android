@@ -112,6 +112,7 @@ dependencies {
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.idling.resource)
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
 
 
 }

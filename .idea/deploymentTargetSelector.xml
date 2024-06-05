@@ -11,6 +11,9 @@
       <SelectionState runConfigName="testLoginLogout()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="AddStoryFragmentTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
