@@ -150,7 +150,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setUpAction() {
-        binding.btnMasuk.setOnClickListener {
+        binding.btnMasukLogin.setOnClickListener {
             intent = Intent(this, LoginActivity::class.java)
             startActivity(
                 intent

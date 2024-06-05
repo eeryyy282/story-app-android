@@ -15,6 +15,7 @@ import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.pref.SettingPreference
 import com.example.storyappjuzairi.data.pref.dataStore
 import com.example.storyappjuzairi.databinding.FragmentProfileBinding
+import com.example.storyappjuzairi.utils.IdlingResource
 import com.example.storyappjuzairi.view.main.setting.SettingViewModel
 import com.example.storyappjuzairi.view.main.setting.SettingViewModelFactory
 import com.example.storyappjuzairi.view.welcome.WelcomeActivity
@@ -88,11 +89,13 @@ class ProfileFragment : Fragment() {
             setTitle(getString(R.string.logout_title))
             setMessage(getString(R.string.logout_confirmation))
             setPositiveButton(getString(R.string.yes)) { _, _ ->
+                IdlingResource.increment()
                 profileViewModel.logout()
                 val intent = Intent(requireContext(), WelcomeActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 activity?.finish()
+                IdlingResource.decrement()
             }
             setNegativeButton(getString(R.string.no), null)
             create()

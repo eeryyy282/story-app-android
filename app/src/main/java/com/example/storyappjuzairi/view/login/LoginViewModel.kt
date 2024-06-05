@@ -9,6 +9,7 @@ import com.example.storyappjuzairi.R
 import com.example.storyappjuzairi.data.pref.UserPreference
 import com.example.storyappjuzairi.data.repository.LoginRepository
 import com.example.storyappjuzairi.data.response.LoginResponse
+import com.example.storyappjuzairi.utils.IdlingResource
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,6 +36,8 @@ class LoginViewModel(
 
     fun loginUser(email: String, password: String) {
         _loading.value = true
+        IdlingResource.increment()
+
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = loginRepository.login(email, password)
@@ -63,9 +66,12 @@ class LoginViewModel(
                 _showErrorDialog.postValue(
                     getApplication<Application>().getString(R.string.login_failed_dialog)
                 )
+            } finally {
+                IdlingResource.decrement()
             }
         }
     }
+
 
     private fun saveUserData(userId: String, username: String, userToken: String) {
         viewModelScope.launch {
